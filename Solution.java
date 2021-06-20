@@ -1,42 +1,38 @@
-package com.Harper;
-// 我的解法：不是原地
-//class Solution {
-//    public void rotate(int[] nums, int k) {
-//        int[] arr = new int[nums.length];
-//
-//        for (int i = 0; i < arr.length; i++) {
-//            arr[(i+k)%nums.length]=nums[i];
+import java.util.Arrays;
+
+//public class Solution {
+//    // 两次遍历！不够优秀！！考虑用快排的思想
+//    public void moveZeroes(int[] nums) {
+//        int j=0;
+//        for (int i=0; i < nums.length; i++) {
+//            if(nums[i]!=0){
+//                nums[j++]=nums[i];
+//            }
 //        }
 //
-//        for (int i = 0; i < arr.length; i++) {
-//            System.out.print(arr[i]);
+//        for (int s =j; s<nums.length;s++){
+//            nums[s]=0;
+//        }
+//
+//        for(int x : nums){
+//            System.out.print(x);
 //        }
 //    }
 //}
 
-
-// 原地解法！！！超牛
-class Solution {
-    public void rotate(int[] nums, int k) {
-        reverse(nums,0,nums.length-1);
-        reverse(nums,0,k-1);
-        reverse(nums,k,nums.length-1);
-
+public class Solution {
+    // 一次遍历！！！重要！！！
+    public void moveZeroes(int[] nums) {
+        int j =0;
         for (int i = 0; i < nums.length; i++) {
-            System.out.print(nums[i]);
+            if(nums[i]!=0){
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j++]=temp;
+            }
         }
-    }
-
-    public void reverse(int[] arr,int start,int end){
-
-        int temp=0;
-        while(start<end){
-            temp=arr[start];
-            arr[start]=arr[end];
-            arr[end]=temp;
-            start++;
-            end--;
+        for(int x :nums){
+            System.out.print(x);
         }
     }
 }
-
